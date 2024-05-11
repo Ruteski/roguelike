@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4t5pwrnnefff"]
+[gd_scene load_steps=11 format=3 uid="uid://c4t5pwrnnefff"]
 
 [ext_resource type="Script" path="res://scripts/board_manager.gd" id="1_dekih"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_s2y61"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bdt5s3nt3cmvt" path="res://prefabs/tiles/exit_tile.tscn" id="6_66bsq"]
 [ext_resource type="PackedScene" uid="uid://cnweefkaieg65" path="res://prefabs/tiles/enemy_tile.tscn" id="7_psgke"]
 [ext_resource type="PackedScene" uid="uid://dvxhrppikwox0" path="res://prefabs/player.tscn" id="7_v6pjb"]
+[ext_resource type="Script" path="res://scripts/hud_manager.gd" id="10_hcf0e"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_s2y61")
@@ -25,3 +26,30 @@ enemy_tile = ExtResource("7_psgke")
 
 [node name="Player" parent="." instance=ExtResource("7_v6pjb")]
 position = Vector2(48, 272)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HudManager" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_hcf0e")
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/HudManager"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -23.0
+offset_right = 49.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "HEALTH: 9999"
+horizontal_alignment = 1
+vertical_alignment = 1

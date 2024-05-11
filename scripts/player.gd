@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal movement
+signal update_health(health)
 
 @onready var ray_cast: RayCast2D = $RayCast
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
@@ -42,6 +43,7 @@ func _move(dir: String) -> void:
 		var tween: Tween = create_tween()
 		tween.tween_property(self, "position", position + direction, 0.2) # 2 segundos
 		if GameController.dificuldade == 1:
+			apply_damage(1)
 			_move_enemy()
 		
 	match dir:
@@ -49,11 +51,13 @@ func _move(dir: String) -> void:
 		"ui_left": animated_sprite.flip_h = true
 
 	if GameController.dificuldade == 2:
+		apply_damage(1)
 		_move_enemy()
 
 
-func restore_hp(amount: int) -> void:
-	pass
+func restore_hp(energia: int) -> void:
+	GameController.health += energia
+	update_health.emit(GameController.health)
 
 
 func _punch() -> void:
@@ -69,6 +73,8 @@ func _punch() -> void:
 	animated_sprite.play("idle")
 	
 	if GameController.dificuldade == 3:
+		# TODO: ou ate msm a cada 2 punbch ele aplica o dano
+		apply_damage(1)
 		_move_enemy()
 
 
@@ -89,4 +95,9 @@ func _on_punch_body_entered(body: Node2D):
 
 
 func apply_damage(strong: int) -> void:
-	pass
+	GameController.health -= strong
+	update_health.emit(GameController.health)
+	
+	if GameController.health <= 0:
+		death = true
+		print("Game Over")
