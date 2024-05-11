@@ -54,29 +54,36 @@ func _random_position()	-> Vector2:
 	return random_pos
 	
 			
-func _spawn_tile() -> void:
-	var tile_count := randi_range(wall_count.min, wall_count.max)
-	for i in tile_count:
-		var tile: Node2D = wall_tile.instantiate()
-		tile.global_position = _random_position()
-		add_child(tile)
-		
-		
-func _spawn_food() -> void:
-	var tile_count: int = randi_range(food_count.min, food_count.max)
-	for i in tile_count:
-		var tile: Node2D = food_tile.instantiate()
-		tile.global_position = _random_position()
-		add_child(tile)
-	
+#func _spawn_tile() -> void:
+#	var tile_count := randi_range(wall_count.min, wall_count.max)
+#	for i in tile_count:
+#		var tile: Node2D = wall_tile.instantiate()
+#		tile.global_position = _random_position()
+#		add_child(tile)
+#		
+#		
+#func _spawn_food() -> void:
+#	var tile_count: int = randi_range(food_count.min, food_count.max)
+#	for i in tile_count:
+#		var tile: Node2D = food_tile.instantiate()
+#		tile.global_position = _random_position()
+#		add_child(tile)
+
+# otimizando a criacao de tiles
+func _spawn_object_random(tile: PackedScene, min: int, max: int) -> void:
+	var object_count: int = randi_range(min, max)
+	for i in object_count:
+		var tile_choice: Node2D = tile.instantiate()
+		tile_choice.global_position = _random_position()
+		add_child(tile_choice)
+
 
 func setup_scene():
 	_initialize_list()
 	_board_setup()
-	
-	_spawn_tile()
-	_spawn_food()
-		
+
+	_spawn_object_random(wall_tile, wall_count.min, wall_count.max)
+	_spawn_object_random(food_tile, wall_count.min, wall_count.max)
 
 class Count:
 	var min: int
