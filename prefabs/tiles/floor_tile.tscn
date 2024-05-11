@@ -1,45 +1,45 @@
-[gd_scene load_steps=12 format=3 uid="uid://cel70y5krdojv"]
+[gd_scene load_steps=12 format=3 uid="uid://5s5kdcalfukx"]
 
-[ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_ygilq"]
-[ext_resource type="Script" path="res://scripts/tiles/floor_tile.gd" id="2_ucex8"]
+[ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_783jj"]
+[ext_resource type="Script" path="res://scripts/tiles/floor_tile.gd" id="2_0ieyp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cn8t5"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5qmj"]
+atlas = ExtResource("1_783jj")
 region = Rect2(0, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5peq2"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovguh"]
+atlas = ExtResource("1_783jj")
 region = Rect2(32, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_co7mm"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ackwb"]
+atlas = ExtResource("1_783jj")
 region = Rect2(64, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6dayy"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iryq"]
+atlas = ExtResource("1_783jj")
 region = Rect2(96, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_odcfg"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_11nah"]
+atlas = ExtResource("1_783jj")
 region = Rect2(128, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4j483"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4tcv"]
+atlas = ExtResource("1_783jj")
 region = Rect2(160, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ks5yh"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4arkt"]
+atlas = ExtResource("1_783jj")
 region = Rect2(192, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_307of"]
-atlas = ExtResource("1_ygilq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwt2p"]
+atlas = ExtResource("1_783jj")
 region = Rect2(224, 128, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_d8l1d"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cqu4r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cn8t5")
+"texture": SubResource("AtlasTexture_q5qmj")
 }],
 "loop": true,
 "name": &"01",
@@ -47,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5peq2")
+"texture": SubResource("AtlasTexture_ovguh")
 }],
 "loop": true,
 "name": &"02",
@@ -55,7 +55,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_co7mm")
+"texture": SubResource("AtlasTexture_ackwb")
 }],
 "loop": true,
 "name": &"03",
@@ -63,7 +63,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6dayy")
+"texture": SubResource("AtlasTexture_0iryq")
 }],
 "loop": true,
 "name": &"04",
@@ -71,7 +71,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_odcfg")
+"texture": SubResource("AtlasTexture_11nah")
 }],
 "loop": true,
 "name": &"05",
@@ -79,7 +79,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4j483")
+"texture": SubResource("AtlasTexture_c4tcv")
 }],
 "loop": true,
 "name": &"06",
@@ -87,7 +87,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ks5yh")
+"texture": SubResource("AtlasTexture_4arkt")
 }],
 "loop": true,
 "name": &"07",
@@ -95,15 +95,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_307of")
+"texture": SubResource("AtlasTexture_fwt2p")
 }],
 "loop": true,
 "name": &"08",
 "speed": 5.0
 }]
 
-[node name="floor_tile" type="AnimatedSprite2D"]
+[node name="FloorTile" type="AnimatedSprite2D"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_d8l1d")
+sprite_frames = SubResource("SpriteFrames_cqu4r")
 animation = &"08"
-script = ExtResource("2_ucex8")
+script = ExtResource("2_0ieyp")

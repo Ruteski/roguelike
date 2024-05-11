@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4t5pwrnnefff"]
+[gd_scene load_steps=5 format=3 uid="uid://c4t5pwrnnefff"]
 
 [ext_resource type="Script" path="res://scripts/board_manager.gd" id="1_dekih"]
-[ext_resource type="PackedScene" uid="uid://5s5kdcalfukx" path="res://prefabs/floor_tile.tscn" id="2_coj00"]
-[ext_resource type="PackedScene" uid="uid://cujuaq5tkcxd6" path="res://prefabs/outer_wall_tile.tscn" id="3_4od81"]
+[ext_resource type="PackedScene" uid="uid://5s5kdcalfukx" path="res://prefabs/tiles/floor_tile.tscn" id="2_coj00"]
+[ext_resource type="PackedScene" uid="uid://cujuaq5tkcxd6" path="res://prefabs/tiles/outer_wall_tile.tscn" id="3_4od81"]
+[ext_resource type="PackedScene" uid="uid://drsdmo0ejqxn0" path="res://prefabs/tiles/wall_tile.tscn" id="4_k35py"]
 
 [node name="GameManager" type="Node2D"]
 
@@ -11,3 +12,4 @@ position = Vector2(48, 48)
 script = ExtResource("1_dekih")
 floor_tile = ExtResource("2_coj00")
 outer_wall_tile = ExtResource("3_4od81")
+wall_tile = ExtResource("4_k35py")
