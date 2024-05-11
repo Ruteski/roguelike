@@ -4,6 +4,7 @@ extends Node2D
 @export var outer_wall_tile: PackedScene
 @export var wall_tile: PackedScene
 @export var food_tile: PackedScene
+@export var exit_tile: PackedScene
 
 var column := 8
 var rows := 8
@@ -78,12 +79,19 @@ func _spawn_object_random(tile: PackedScene, min: int, max: int) -> void:
 		add_child(tile_choice)
 
 
+func _spawn_exit() -> void:
+	var temp_exit = exit_tile.instantiate() as Node2D
+	temp_exit.global_position = Vector2(column * space - space, rows - space / 4)
+	add_child(temp_exit)
+
+
 func setup_scene():
 	_initialize_list()
 	_board_setup()
 
 	_spawn_object_random(wall_tile, wall_count.min, wall_count.max)
 	_spawn_object_random(food_tile, wall_count.min, wall_count.max)
+	_spawn_exit()
 
 class Count:
 	var min: int
