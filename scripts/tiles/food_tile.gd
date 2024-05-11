@@ -2,6 +2,10 @@ extends Area2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var collision: CollisionShape2D = $Collision
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+@export var sfx_soda: Array
+@export var sfx_apple: Array
 
 var energy := 4
 var food_temp: int
@@ -18,6 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name.match("Player"):
 		body.restore_hp(energy)
 		collision.queue_free()
+		_play_sound()
 		
 		# aumentar o tamanho
 		var tween: Tween = create_tween()
@@ -29,3 +34,11 @@ func _on_body_entered(body: Node2D) -> void:
 		# espera o tween terminar para entao deletar o objeto da tree
 		await tween.finished
 		queue_free()
+
+
+func _play_sound() -> void:
+	match food_temp:
+		0: audio_stream_player.stream = sfx_soda[randi() % sfx_soda.size()]
+		1: audio_stream_player.stream = sfx_apple[randi() % sfx_apple.size()]
+	
+	audio_stream_player.play()

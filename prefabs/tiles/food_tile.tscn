@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c087c2pgihpvn"]
+[gd_scene load_steps=11 format=3 uid="uid://c087c2pgihpvn"]
 
 [ext_resource type="Script" path="res://scripts/tiles/food_tile.gd" id="1_7ta7t"]
 [ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_et3gh"]
+[ext_resource type="AudioStream" uid="uid://ds8kdirh11jjk" path="res://assets/sounds/scavengers_soda1.ogg" id="2_gr3gh"]
+[ext_resource type="AudioStream" uid="uid://b72iqx6k137e" path="res://assets/sounds/scavengers_soda2.ogg" id="3_j6y5t"]
+[ext_resource type="AudioStream" uid="uid://bgwtixngt8uxw" path="res://assets/sounds/scavengers_fruit1.ogg" id="4_daqrj"]
+[ext_resource type="AudioStream" uid="uid://dyr5cl74gn1me" path="res://assets/sounds/scavengers_fruit2.ogg" id="5_oufj2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pk8ik"]
 atlas = ExtResource("1_et3gh")
@@ -34,6 +38,8 @@ animations = [{
 
 [node name="FoodTile" type="Area2D"]
 script = ExtResource("1_7ta7t")
+sfx_soda = [ExtResource("2_gr3gh"), ExtResource("3_j6y5t")]
+sfx_apple = [ExtResource("4_daqrj"), ExtResource("5_oufj2")]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -42,5 +48,8 @@ animation = &"apple"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pmj3j")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -16.178
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
