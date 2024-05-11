@@ -1,7 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvxhrppikwox0"]
+[gd_scene load_steps=14 format=3 uid="uid://dvxhrppikwox0"]
 
 [ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_s16ve"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ug6ot"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctcg1"]
+atlas = ExtResource("1_s16ve")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8f6a"]
+atlas = ExtResource("1_s16ve")
+region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_677s1"]
 atlas = ExtResource("1_s16ve")
@@ -31,6 +39,17 @@ region = Rect2(160, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ctcg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8f6a")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_677s1")
 }, {
 "duration": 1.0,
@@ -55,14 +74,15 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xnxis"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vie3m"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ug6ot")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dcvto")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.482655
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_xnxis")
@@ -74,4 +94,12 @@ target_position = Vector2(0, 15)
 wait_time = 0.4
 one_shot = true
 
+[node name="Punch" type="Area2D" parent="."]
+
+[node name="PunchCollision" type="CollisionShape2D" parent="Punch"]
+shape = SubResource("CircleShape2D_vie3m")
+disabled = true
+debug_color = Color(0.866667, 0, 0.156863, 0.505882)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Punch" to="." method="_on_punch_body_entered"]
