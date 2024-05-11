@@ -3,12 +3,14 @@ extends Node2D
 @export var floor_tile: PackedScene
 @export var outer_wall_tile: PackedScene
 @export var wall_tile: PackedScene
+@export var food_tile: PackedScene
 
 var column := 8
 var rows := 8
 var space := 32
 var grid_position := []
 var wall_count = Count.new(5,9) # quantidade de wall criados no grid - dificuldade
+var food_count = Count.new(1,5)
 
 
 func _ready() -> void:
@@ -45,7 +47,10 @@ func _board_setup() -> void:
 func _random_position()	-> Vector2:
 	var random: int = randi_range(0, grid_position.size() - 1)
 	var random_pos = grid_position[random]
-	grid_position.erase(random)
+	# grid_position.erase(random) # TODO: testar se a funcao erase esta funcionando
+	
+	# remove posicoes ja utilizados por um tile, deixando apenas posicoes livres
+	grid_position.pop_at(random)  
 	return random_pos
 	
 			
@@ -55,14 +60,24 @@ func _spawn_tile() -> void:
 		var tile: Node2D = wall_tile.instantiate()
 		tile.global_position = _random_position()
 		add_child(tile)
+		
+		
+func _spawn_food() -> void:
+	var tile_count: int = randi_range(food_count.min, food_count.max)
+	for i in tile_count:
+		var tile: Node2D = food_tile.instantiate()
+		tile.global_position = _random_position()
+		add_child(tile)
 	
 
 func setup_scene():
 	_initialize_list()
 	_board_setup()
+	
 	_spawn_tile()
+	_spawn_food()
 		
-			
+
 class Count:
 	var min: int
 	var max: int

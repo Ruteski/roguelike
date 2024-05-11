@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://c087c2pgihpvn"]
+
+[ext_resource type="Script" path="res://scripts/tiles/food_tile.gd" id="1_7ta7t"]
+[ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_et3gh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk8ik"]
+atlas = ExtResource("1_et3gh")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6c5h"]
+atlas = ExtResource("1_et3gh")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8t8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk8ik")
+}],
+"loop": true,
+"name": &"apple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6c5h")
+}],
+"loop": true,
+"name": &"soda",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmj3j"]
+
+[node name="FoodTile" type="Area2D"]
+script = ExtResource("1_7ta7t")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w8t8t")
+animation = &"apple"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pmj3j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
