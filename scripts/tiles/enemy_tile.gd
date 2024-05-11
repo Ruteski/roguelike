@@ -40,7 +40,7 @@ func _move() -> void:
 
 
 func _attack() -> void:
-	target.apply_damage(strong)
+	target.apply_damage(strong, true)
 	animator.play("attack")
 	await animator.animation_finished
 	animator.play("idle")

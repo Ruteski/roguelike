@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dvxhrppikwox0"]
+[gd_scene load_steps=16 format=3 uid="uid://dvxhrppikwox0"]
 
 [ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_s16ve"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ug6ot"]
@@ -10,6 +10,14 @@ region = Rect2(0, 160, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8f6a"]
 atlas = ExtResource("1_s16ve")
 region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqb1k"]
+atlas = ExtResource("1_s16ve")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hllf5"]
+atlas = ExtResource("1_s16ve")
+region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_677s1"]
 atlas = ExtResource("1_s16ve")
@@ -50,6 +58,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qqb1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hllf5")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_677s1")
 }, {
 "duration": 1.0,
@@ -81,7 +100,7 @@ script = ExtResource("1_ug6ot")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dcvto")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]

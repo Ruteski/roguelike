@@ -94,9 +94,14 @@ func _on_punch_body_entered(body: Node2D):
 		body.apply_damage()
 
 
-func apply_damage(strong: int) -> void:
+func apply_damage(strong: int, enemy_hit: bool = false) -> void:
 	GameController.health -= strong
 	update_health.emit(GameController.health)
+	
+	if enemy_hit:
+		animated_sprite.play("damage")
+		await animated_sprite.animation_finished
+		animated_sprite.play("idle")
 	
 	if GameController.health <= 0:
 		death = true
