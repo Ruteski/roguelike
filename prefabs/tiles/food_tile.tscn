@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://b74ly4sji760d"]
+
+[ext_resource type="Script" path="res://scripts/tiles/food_tile.gd" id="1_8aq6e"]
+[ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="2_8xa4l"]
+[ext_resource type="AudioStream" uid="uid://ds8kdirh11jjk" path="res://assets/sounds/scavengers_soda1.ogg" id="2_q3dfs"]
+[ext_resource type="AudioStream" uid="uid://b72iqx6k137e" path="res://assets/sounds/scavengers_soda2.ogg" id="3_026d7"]
+[ext_resource type="AudioStream" uid="uid://bgwtixngt8uxw" path="res://assets/sounds/scavengers_fruit1.ogg" id="4_tlggr"]
+[ext_resource type="AudioStream" uid="uid://dyr5cl74gn1me" path="res://assets/sounds/scavengers_fruit2.ogg" id="5_eheac"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k30s1"]
+atlas = ExtResource("2_8xa4l")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e8sj"]
+atlas = ExtResource("2_8xa4l")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5rmfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k30s1")
+}],
+"loop": true,
+"name": &"apple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e8sj")
+}],
+"loop": true,
+"name": &"soda",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmbjm"]
+
+[node name="food_tile" type="Area2D"]
+script = ExtResource("1_8aq6e")
+sfx_soda = [ExtResource("2_q3dfs"), ExtResource("3_026d7")]
+sfx_apple = [ExtResource("4_tlggr"), ExtResource("5_eheac")]
+
+[node name="animated_sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_5rmfl")
+animation = &"soda"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hmbjm")
+
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

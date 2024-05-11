@@ -1,0 +1,167 @@
+[gd_scene load_steps=22 format=3 uid="uid://1coectyq81jf"]
+
+[ext_resource type="Script" path="res://scripts/tiles/enemy_tile.gd" id="1_5c0aw"]
+[ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="2_3nyp1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d2o1"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aelgu"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4ede"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtgxu"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i4gw"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh7ei"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fulgk"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luy8s"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5mr64"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d2o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aelgu")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4ede")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtgxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i4gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh7ei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fulgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luy8s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pahjy"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0irkq"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwfwg"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6abrm"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4vt1"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wogcy"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s080s"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvwhh"]
+atlas = ExtResource("2_3nyp1")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6pf4g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pahjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0irkq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwfwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6abrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4vt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wogcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s080s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvwhh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tox7w"]
+
+[node name="enemy_tile" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_5c0aw")
+
+[node name="enemy_01" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_5mr64")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="enemy_02" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_6pf4g")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tox7w")
+
+[node name="raycast" type="RayCast2D" parent="."]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://byldqewfxqxxq"]
+
+[ext_resource type="Script" path="res://scripts/tiles/exit_tile.gd" id="1_ain45"]
+[ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="2_w7buq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olriw"]
+size = Vector2(16, 16)
+
+[node name="exit_tile" type="Area2D"]
+script = ExtResource("1_ain45")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_w7buq")
+region_enabled = true
+region_rect = Rect2(128, 64, 32, 32)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_olriw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
