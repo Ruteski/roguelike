@@ -36,6 +36,7 @@ animations = [{
 script = ExtResource("1_7ta7t")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_w8t8t")
 animation = &"apple"
 

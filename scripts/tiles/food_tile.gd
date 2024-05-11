@@ -21,11 +21,11 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		# aumentar o tamanho
 		var tween: Tween = create_tween()
-		tween.tween_property(self, "scale", Vector2.ONE * 1.2, .5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(self, "scale", Vector2.ONE * 1.2, .2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 		
 		# ficar transparente - modulate alpha
-		tween.tween_property(animated_sprite, "modulate:a", 0, .5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT).set_delay(.2)
+		tween.tween_property(animated_sprite, "modulate:a", 0, .1).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT).set_delay(.1)
 		
 		# espera o tween terminar para entao deletar o objeto da tree
-		await tween.tween_completed
+		await tween.finished
 		queue_free()
