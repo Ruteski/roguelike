@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4t5pwrnnefff"]
+[gd_scene load_steps=13 format=3 uid="uid://c4t5pwrnnefff"]
 
 [ext_resource type="Script" path="res://scripts/board_manager.gd" id="1_dekih"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_s2y61"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cnweefkaieg65" path="res://prefabs/tiles/enemy_tile.tscn" id="7_psgke"]
 [ext_resource type="PackedScene" uid="uid://dvxhrppikwox0" path="res://prefabs/player.tscn" id="7_v6pjb"]
 [ext_resource type="Script" path="res://scripts/hud_manager.gd" id="10_hcf0e"]
+[ext_resource type="AudioStream" uid="uid://q45034kyxfpw" path="res://assets/sounds/scavengers_footstep1.ogg" id="10_ydm8i"]
+[ext_resource type="AudioStream" uid="uid://dartgy6ixrtnk" path="res://assets/sounds/scavengers_footstep2.ogg" id="11_ofogx"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_s2y61")
@@ -26,6 +28,7 @@ enemy_tile = ExtResource("7_psgke")
 
 [node name="Player" parent="." instance=ExtResource("7_v6pjb")]
 position = Vector2(48, 272)
+sfx_footstep = [ExtResource("10_ydm8i"), ExtResource("11_ofogx")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

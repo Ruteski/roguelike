@@ -1,7 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://dvxhrppikwox0"]
+[gd_scene load_steps=23 format=3 uid="uid://dvxhrppikwox0"]
 
 [ext_resource type="Texture2D" uid="uid://b1ohd8afwjqf4" path="res://assets/sprites/scavengers_spritesheet.png" id="1_s16ve"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ug6ot"]
+[ext_resource type="AudioStream" uid="uid://q45034kyxfpw" path="res://assets/sounds/scavengers_footstep1.ogg" id="2_chixr"]
+[ext_resource type="AudioStream" uid="uid://dartgy6ixrtnk" path="res://assets/sounds/scavengers_footstep2.ogg" id="3_mm54i"]
+[ext_resource type="AudioStream" uid="uid://ccl4wsltwmovx" path="res://assets/sounds/scavengers_chop1.ogg" id="4_uauls"]
+[ext_resource type="AudioStream" uid="uid://byuhog0flignx" path="res://assets/sounds/scavengers_chop2.ogg" id="5_ehao8"]
+[ext_resource type="AudioStream" uid="uid://dx4ds2cdnhhg2" path="res://assets/sounds/scavengers_enemy1.ogg" id="6_8cl6i"]
+[ext_resource type="AudioStream" uid="uid://crajcxjkjc7ha" path="res://assets/sounds/scavengers_enemy2.ogg" id="7_flv3a"]
+[ext_resource type="AudioStream" uid="uid://okb8gi7u3y3n" path="res://assets/sounds/scavengers_die.ogg" id="9_cihl1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctcg1"]
 atlas = ExtResource("1_s16ve")
@@ -97,6 +104,9 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ug6ot")
+sfx_footstep = [ExtResource("2_chixr"), ExtResource("3_mm54i")]
+sfx_attack = [ExtResource("4_uauls"), ExtResource("5_ehao8")]
+sfx_damage = [ExtResource("6_8cl6i"), ExtResource("7_flv3a")]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dcvto")
@@ -119,6 +129,13 @@ one_shot = true
 shape = SubResource("CircleShape2D_vie3m")
 disabled = true
 debug_color = Color(0.866667, 0, 0.156863, 0.505882)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -14.367
+
+[node name="AudioDie" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cihl1")
+volume_db = -6.163
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Punch" to="." method="_on_punch_body_entered"]

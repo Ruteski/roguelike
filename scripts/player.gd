@@ -3,8 +3,14 @@ extends CharacterBody2D
 signal movement
 signal update_health(health)
 
+@export var sfx_footstep: Array
+@export var sfx_attack: Array
+@export var sfx_damage: Array
+
 @onready var ray_cast: RayCast2D = $RayCast
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
+@onready var audio_stream_player = $AudioStreamPlayer
+@onready var audio_die = $AudioDie
 
 var input: Dictionary = {"ui_up": Vector2.UP, "ui_down": Vector2.DOWN, "ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT}
 var grid_size: int = 32
@@ -15,6 +21,7 @@ var enemy_movement: int = 0
 
 
 func _ready() -> void:
+	randomize()
 	GameController.player = self
 
 
@@ -40,6 +47,8 @@ func _move(dir: String) -> void:
 	ray_cast.force_raycast_update()
 	
 	if !ray_cast.is_colliding():
+		_play_sound(sfx_footstep)
+		
 		var tween: Tween = create_tween()
 		tween.tween_property(self, "position", position + direction, 0.2) # 2 segundos
 		if GameController.dificuldade == 1:
@@ -67,6 +76,9 @@ func _punch() -> void:
 	$Punch.global_position = global_position + direction
 	$Punch/PunchCollision.disabled = false
 	animated_sprite.play("attack")
+	
+	# TODO: tocar som aqui, apenas se acertar algo
+	_play_sound(sfx_attack)
 	
 	await animated_sprite.animation_finished
 	$Punch/PunchCollision.disabled = true
@@ -102,7 +114,14 @@ func apply_damage(strong: int, enemy_hit: bool = false) -> void:
 		animated_sprite.play("damage")
 		await animated_sprite.animation_finished
 		animated_sprite.play("idle")
+		
+		_play_sound(sfx_damage)
 	
 	if GameController.health <= 0:
 		death = true
-		print("Game Over")
+		audio_die.play()
+
+
+func _play_sound(sfx: Array) -> void:
+	audio_stream_player.stream = sfx[randi() % sfx.size()]
+	audio_stream_player.play()
