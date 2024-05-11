@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4t5pwrnnefff"]
+[gd_scene load_steps=10 format=3 uid="uid://c4t5pwrnnefff"]
 
 [ext_resource type="Script" path="res://scripts/board_manager.gd" id="1_dekih"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_s2y61"]
 [ext_resource type="PackedScene" uid="uid://5s5kdcalfukx" path="res://prefabs/tiles/floor_tile.tscn" id="2_coj00"]
 [ext_resource type="PackedScene" uid="uid://cujuaq5tkcxd6" path="res://prefabs/tiles/outer_wall_tile.tscn" id="3_4od81"]
 [ext_resource type="PackedScene" uid="uid://drsdmo0ejqxn0" path="res://prefabs/tiles/wall_tile.tscn" id="4_k35py"]
 [ext_resource type="PackedScene" uid="uid://c087c2pgihpvn" path="res://prefabs/tiles/food_tile.tscn" id="5_674ip"]
 [ext_resource type="PackedScene" uid="uid://bdt5s3nt3cmvt" path="res://prefabs/tiles/exit_tile.tscn" id="6_66bsq"]
+[ext_resource type="PackedScene" uid="uid://cnweefkaieg65" path="res://prefabs/tiles/enemy_tile.tscn" id="7_psgke"]
 [ext_resource type="PackedScene" uid="uid://dvxhrppikwox0" path="res://prefabs/player.tscn" id="7_v6pjb"]
 
 [node name="GameManager" type="Node2D"]
+script = ExtResource("1_s2y61")
 
 [node name="BoardManager" type="Node2D" parent="."]
 position = Vector2(48, 48)
@@ -18,6 +21,7 @@ outer_wall_tile = ExtResource("3_4od81")
 wall_tile = ExtResource("4_k35py")
 food_tile = ExtResource("5_674ip")
 exit_tile = ExtResource("6_66bsq")
+enemy_tile = ExtResource("7_psgke")
 
 [node name="Player" parent="." instance=ExtResource("7_v6pjb")]
 position = Vector2(48, 272)

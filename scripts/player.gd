@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal movement
+
 @onready var ray_cast: RayCast2D = $RayCast
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 
@@ -8,6 +10,11 @@ var grid_size: int = 32
 var direction: Vector2 = Vector2.RIGHT * grid_size
 var in_move: bool = false
 var death: bool = false
+var enemy_movement: int = 0
+
+
+func _ready() -> void:
+	GameController.player = self
 
 
 func _input(event: InputEvent) -> void:
@@ -34,10 +41,15 @@ func _move(dir: String) -> void:
 	if !ray_cast.is_colliding():
 		var tween: Tween = create_tween()
 		tween.tween_property(self, "position", position + direction, 0.2) # 2 segundos
+		if GameController.dificuldade == 1:
+			_move_enemy()
 		
 	match dir:
 		"ui_right": animated_sprite.flip_h = false
 		"ui_left": animated_sprite.flip_h = true
+
+	if GameController.dificuldade == 2:
+		_move_enemy()
 
 
 func restore_hp(amount: int) -> void:
@@ -55,6 +67,16 @@ func _punch() -> void:
 	await animated_sprite.animation_finished
 	$Punch/PunchCollision.disabled = true
 	animated_sprite.play("idle")
+	
+	if GameController.dificuldade == 3:
+		_move_enemy()
+
+
+func _move_enemy() -> void:
+	enemy_movement += 1
+	if enemy_movement % 2 == 0:
+		movement.emit()
+		enemy_movement = 0
 
 
 func _on_timer_timeout():
@@ -64,3 +86,7 @@ func _on_timer_timeout():
 func _on_punch_body_entered(body: Node2D):
 	if body.has_method("apply_damage"):
 		body.apply_damage()
+
+
+func apply_damage(strong: int) -> void:
+	pass

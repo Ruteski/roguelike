@@ -5,6 +5,7 @@ extends Node2D
 @export var wall_tile: PackedScene
 @export var food_tile: PackedScene
 @export var exit_tile: PackedScene
+@export var enemy_tile: PackedScene
 
 var column := 8
 var rows := 8
@@ -15,7 +16,7 @@ var food_count = Count.new(1,5)
 
 
 func _ready() -> void:
-	setup_scene()
+	randomize()
 
 	
 #grid
@@ -85,10 +86,12 @@ func _spawn_exit() -> void:
 	add_child(temp_exit)
 
 
-func setup_scene():
+func setup_scene(level: int):
 	_initialize_list()
 	_board_setup()
 
+	var enemy_count = 1
+	_spawn_object_random(enemy_tile, enemy_count, enemy_count)
 	_spawn_object_random(wall_tile, wall_count.min, wall_count.max)
 	_spawn_object_random(food_tile, wall_count.min, wall_count.max)
 	_spawn_exit()
