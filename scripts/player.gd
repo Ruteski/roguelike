@@ -119,7 +119,11 @@ func apply_damage(strong: int, enemy_hit: bool = false) -> void:
 	
 	if GameController.health <= 0:
 		death = true
+		GameController.health = 0
+		update_health.emit(GameController.health)
 		audio_die.play()
+		await audio_die.finished
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
 func _play_sound(sfx: Array) -> void:

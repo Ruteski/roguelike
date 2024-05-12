@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds7w84jeljmdc"]
+
+[ext_resource type="Script" path="res://scripts/manager/main_manager.gd" id="1_2qkip"]
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_2qkip")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 32.0
+offset_right = 104.0
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Roguelipse"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPlay" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -4.0
+offset_right = 60.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play
+"
+
+[node name="ButtonQuit" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 53.0
+offset_right = 60.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sair"
+
+[connection signal="pressed" from="Control/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="Control/ButtonQuit" to="." method="_on_button_quit_pressed"]

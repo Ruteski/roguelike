@@ -90,7 +90,7 @@ func setup_scene(level: int):
 	_initialize_list()
 	_board_setup()
 
-	var enemy_count = 1
+	var enemy_count = int(floor(log(GameController.level)))
 	_spawn_object_random(enemy_tile, enemy_count, enemy_count)
 	_spawn_object_random(wall_tile, wall_count.min, wall_count.max)
 	_spawn_object_random(food_tile, wall_count.min, wall_count.max)

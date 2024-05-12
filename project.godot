@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Roguelike"
-run/main_scene="res://scenes/game_manager.tscn"
+config/name="Roguelipse"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
